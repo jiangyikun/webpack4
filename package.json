@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "build":"webpack"
+  },
   "author": "jiangyikun",
   "license": "ISC",
   "devDependencies": {
