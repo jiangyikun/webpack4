@@ -1,6 +1,7 @@
 const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin"); //自动在dist中生成html页面并引入相应依赖的js文件
 const { CleanWebpackPlugin } = require("clean-webpack-plugin"); //在打包之前清除dist目录中的文件，在开始文件的打包，可以把之前没有使用到的文件删除
+const webpack = require('webpack');
 
 module.exports = {
   mode: "development", //production生产环境
@@ -22,6 +23,8 @@ module.exports = {
     contentBase:'./dist',//打包的文件目录
     open:true,//自动打开浏览器
     port:3000,//端口
+    hot:true,//Hot Module Replacemnet css更新时不刷新页面，只更新css,还需引入HotModuleReplacementPlugin插件
+    hotOnly:true,//即使hot没有生效，也不让浏览器自动刷新
   },
   module: {
     rules: [
@@ -38,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: ["style-loader", "css-loader","postcss-loader"]
       },
       {
         test: /\.scss$/,
@@ -65,6 +68,7 @@ module.exports = {
     new htmlWebpackPlugin({
       template: "./index.html"
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ]
 };

@@ -2,3 +2,6 @@
   width: 150px;
   height: 230px;
 }
+div:nth-of-type(odd){
+  color: blue;
+}
