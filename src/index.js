@@ -1,12 +1,12 @@
 //ES module 模块引入方式
-// import Header from './header';
-// import SideBar from './sideBar';
-// import Content from './content';
+import "@babel/polyfill";
+import Header from './header';
+import SideBar from './sideBar';
+import Content from './content';
 var image1 = require('./static/images/image1.jpg');
 import style from './index.scss'
 import './index.css'
 
-console.log(image1);
 
 var root = document.getElementById('root');
 var img = new Image();
@@ -23,6 +23,15 @@ btn.onclick = function(){
   document.body.appendChild(div);
 }
 document.body.appendChild(btn);
+
+const arr = [
+  new Promise(()=>{console.log('promise1')}),
+  new Promise(()=>{console.log('promise2')}),
+]
+
+arr.map(item=>{
+  console.log(item);
+})
 
 // new Header();
 // new SideBar();
